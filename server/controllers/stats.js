@@ -6,12 +6,14 @@ const allUsersStats = asyncWrapper(async (req, res) => {
   const tasks = await Task.find({});
   const users = await User.find({});
   const stats = users.map((user) => {
-    const { fullname, email, userId } = user;
+    const { fullName, email, userId } = user;
     const userTasks = tasks.filter((task) => task.userId === userId);
+    const userTasksDone = userTasks.filter((task) => task.isDone === true);
     return {
-      fullname,
+      fullName,
       email,
-      tasks: userTasks,
+      nbrTasks: userTasks.length,
+      nbrTasksDone: userTasksDone.length,
     };
   });
   res.status(200).json(stats);
@@ -20,12 +22,14 @@ const allUsersStats = asyncWrapper(async (req, res) => {
 const userStats = asyncWrapper(async (req, res) => {
   const { userId } = req.params;
   const tasks = await Task.find({ userId });
+  const tasksDone = tasks.filter((task) => task.isDone === true);
   const user = await User.findOne({ userId });
-  const { fullname, email } = user;
+  const { fullName, email } = user;
   const stats = {
-    fullname,
+    fullName,
     email,
-    tasks,
+    nbrTasks: tasks.length,
+    nbrTasksDone: tasksDone.length,
   };
   res.status(200).json(stats);
 });
