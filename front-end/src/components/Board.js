@@ -2,6 +2,8 @@ import { SignedIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import GetUsers from "../hooks/GetUsers";
 import axios from "axios";
+import Category from "./Category";
+import Tasks from "./Tasks";
 
 export default function Board() {
   const navigate = useNavigate();
@@ -9,7 +11,7 @@ export default function Board() {
   const { isSignedIn, userId } = useAuth();
 
   const { user } = useUser();
-  
+
   const AllUsers = GetUsers();
 
   if (isSignedIn) {
@@ -31,15 +33,15 @@ export default function Board() {
     }
 
     if (AllUsers === "load") {
-      <div className="loader"></div>;
+      return <div className="loader"></div>;
     } else {
       return (
         <SignedIn>
-            <div className="m-5">
-                <UserButton/>
-            </div>
-            <p>{user.fullName}</p>
-            <p>{email}</p>
+          <div className="m-5">
+            <UserButton />
+          </div>
+          <p>{user.fullName}</p>
+          <p>{email}</p>
           <div>
             {AllUsers.filter((user) => user.email === email).length === 0 && (
               <button className="btn btn-dark" onClick={StoreUserData}>
@@ -47,6 +49,8 @@ export default function Board() {
               </button>
             )}
           </div>
+          <Category />
+          <Tasks />
         </SignedIn>
       );
     }

@@ -65,6 +65,22 @@ html{
 }
 
 
+/* Category.js */
+
+.catColor{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  outline: 1px solid;
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.AddCategForm{
+  animation: fade .5s linear;
+}
+
+
 
 
 /* clerk */
@@ -75,7 +91,7 @@ html{
 
 
 /* loading logo */
-/* HTML: <div class="loader"></div> */
+
 .loader {
   width: 60px;
   aspect-ratio: 2;
@@ -92,4 +108,18 @@ html{
     40%{background-position:0% 100%, 50%   0%,100%  50%}
     60%{background-position:0%  50%, 50% 100%,100%   0%}
     80%{background-position:0%  50%, 50%  50%,100% 100%}
+}
+
+.loader1 {
+  width: 120px;
+  height: 20px;
+  border-radius: 5px;
+  background: 
+    linear-gradient(90deg,rgba(88, 88, 88, 0.067) 33%,rgba(106, 106, 106, 0.333) 50%,#0001 66%)
+    #f2f2f2;
+  background-size:300% 100%;
+  animation: l1 1s infinite linear;
+}
+@keyframes l1 {
+  0% {background-position: right}
 }

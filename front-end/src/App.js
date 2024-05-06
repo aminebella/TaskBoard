@@ -23,8 +23,7 @@ function App() {
     }
   
     IsUserSignedIn()
-
-  } )
+  },[isSignedIn , navigate])
 
 
 
