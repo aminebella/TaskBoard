@@ -5,6 +5,7 @@ const taskRoute = require("./routes/tasks");
 const noteRoute = require("./routes/notes");
 const categoryRoute = require("./routes/category");
 const statsRout = require("./routes/stats");
+// mongoose
 const mongoose = require("mongoose");
 const cors = require("cors");
 app.use(cors());
