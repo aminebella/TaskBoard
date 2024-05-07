@@ -1,35 +1,36 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useAuth } from "@clerk/clerk-react";
+import { useSelector } from "react-redux";
+import GetTasks from "../hooks/GetTasks";
+
 
 export default function Tasks() {
+  const clickedCateg = useSelector((data) => data.categ);
 
-    const clickedCateg = useSelector(data=>data.categ)
+  const { userId } = useAuth();
 
-    const [tasks , setTasks] = useState([])
+  const allTasks = GetTasks()
 
-    useEffect(()=>{
-        axios.get(`http://localhost:8000/api/tasks/category/${clickedCateg}`)
-        .then(res=>setTasks(res.data.task))
-        .catch(err=>setTasks('error'))
-    } , [clickedCateg])
-
-  return (
-    <div>
-        {
-            tasks !== undefined && (
-                tasks !== 'error' ?
-                tasks.map((task , i)=>
-                    <div key={i}>
-                        <p>task : {task.description}</p>
-                    </div>
-                )
-                :
-                <div>
-                    <p className='text-body-secondary'>No tasks asigned to this category</p>
+  if (allTasks !== 'load') {
+    let Tasks = allTasks.filter((task) => task.userId === userId);
+    if(clickedCateg !== ""){
+        Tasks = allTasks.filter((task) => task.userId === userId && task.nameCategory === clickedCateg);
+    }
+        return (
+          <div>
+            {Tasks.length !== 0 ? (
+              Tasks.map((task, i) => (
+                <div key={i}>
+                  <p>task : {task.description}</p>
                 </div>
-            )
-        }
-    </div>
-  )
+              ))
+            ) : (
+              <div>
+                <p className="text-body-secondary">
+                  No tasks asigned to this category
+                </p>
+              </div>
+            )}
+          </div>
+        );
+      }
 }

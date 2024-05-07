@@ -1,4 +1,4 @@
-export default function reducer(state = {categ : "all" } , action ) {
+export default function reducer(state = {categ : "" } , action ) {
     
     switch(action.type){
         case "storeCateg":

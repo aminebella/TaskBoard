@@ -8,6 +8,10 @@ const CategSchema = new mongoose.Schema({
   color: {
     type: String,
     default: "green",
+  },
+  userId: {
+    type: String,
+    required: true,
   }
 });
 

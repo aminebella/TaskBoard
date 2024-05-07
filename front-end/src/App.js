@@ -8,7 +8,6 @@ import { useAuth } from '@clerk/clerk-react';
 import { useEffect } from 'react';
 
 
-
 function App() {
 
   const { isSignedIn } = useAuth();
@@ -32,6 +31,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Welcome/>}/>
         <Route path='/Dashboard' element={<Board/>}/>
+        <Route path='/stats' element={<p>hello from stats</p>}/>
       </Routes>
     </div>
 
