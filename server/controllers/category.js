@@ -14,27 +14,40 @@ const createCateg = asyncWrapper(async (req, res) => {
 
 const deleteCateg = asyncWrapper(async (req, res, next) => {
   const { nameCateg } = req.params;
-  const tasks = await Task.find({ nameCategory: nameCateg });
+  const { idUser } = req.params;
 
-  if (tasks.length >= 1) {
-    next(createCustomError(`There are tasks in this category`, 404));
-    return res
-      .status(404)
-      .json({
-        success: false,
-        msg: `There are tasks in the ${nameCateg} category`,
-      });
-  }
-  const category = await Category.findOneAndDelete({ nameCategory: nameCateg });
+  const tasks = await Task.deleteMany({ nameCategory: nameCateg , userId : idUser  })
+
+  const category = await Category.findOneAndDelete({ nameCategory: nameCateg , userId : idUser  });
 
   if (!category) {
     return next(createCustomError(`No Category with name : ${nameCateg}`, 404));
   }
   res.status(200).json({ category });
+  res.status(200).json({ tasks });
+});
+
+const updateCateg = asyncWrapper(async (req, res) => {
+  const { nameCateg } = req.params;
+  const { idUser } = req.params;
+
+  const tasks = await Task.updateMany({ nameCategory: nameCateg , userId : idUser } , {nameCategory: req.body.nameCategory} , {
+    new: true,
+    runValidators: true,
+  })
+
+  const category = await Category.findOneAndUpdate({ nameCategory: nameCateg , userId : idUser }, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(200).json({ category });
+  res.status(200).json({ tasks });
 });
 
 module.exports = {
   getAllCategs,
   createCateg,
+  updateCateg,
   deleteCateg,
 };

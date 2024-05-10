@@ -27,6 +27,7 @@ export default function Board() {
           <p>{user.fullName}</p>
           <p>{email}</p>
           <Category />
+          <button onClick={()=>navigate('/stats')}>Statistics</button>
           <Tasks />
         </SignedIn>
       );

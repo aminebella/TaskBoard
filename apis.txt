@@ -21,7 +21,8 @@ APIs URLS :
   - Category :
     -- All Categories : get("/api/categories")
     -- Create Category : post("/api/categories")
-    -- Delete Category : delete("/api/categories/:nameCategory") => check if there are tasks in this category
+    -- update Category : put("/api/categories/:nameCategory/:userId")
+    -- Delete Category : delete("/api/categories/:nameCategory")
 
   - Statisctics : {fullname, email, nbr_tasks_done, nbr_tasks}
     -- All Users : get("/api/stats")
