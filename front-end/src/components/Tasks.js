@@ -61,4 +61,7 @@ export default function Tasks() {
       </div>
     );
   }
+  else{
+    return <div className="loader"></div>
+  }
 }

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Welcome from './components/Welcome';
 import Board from './components/Board';
 import { useAuth } from '@clerk/clerk-react';
+import Stats from './components/Stats';
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
           :
           <Route path='/' element={<Welcome/>}/>
         }
-        <Route path='/stats' element={<p>stats</p>}/>
+        <Route path='/api/stats/:userId' element={<Stats/>}/>
       </Routes>
     </div>
 

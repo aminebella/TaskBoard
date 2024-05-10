@@ -1,38 +1,23 @@
-import { SignedIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
-import { useNavigate } from "react-router-dom";
-import GetUsers from "../hooks/GetUsers";
-import Category from "./Category";
+import { SignedIn, useUser } from "@clerk/clerk-react";
 import Tasks from "./Tasks";
+import Menu from "./Menu";
 
 export default function Board() {
-  const navigate = useNavigate();
 
-  const { isSignedIn } = useAuth();
+  const {user} = useUser()
 
-  const { user } = useUser();
+  if(user){
+    return (
+      <SignedIn>
+        <Menu/>
+        <Tasks />
+      </SignedIn>
+    );
 
-  const AllUsers = GetUsers();
-
-  if (isSignedIn) {
-    const email = user.primaryEmailAddress.emailAddress;
-
-    if (AllUsers === "load") {
-      return <div className="loader"></div>;
-    } else {
-      return (
-        <SignedIn>
-          <div className="m-5">
-            <UserButton />
-          </div>
-          <p>{user.fullName}</p>
-          <p>{email}</p>
-          <Category />
-          <button onClick={()=>navigate('/stats')}>Statistics</button>
-          <Tasks />
-        </SignedIn>
-      );
-    }
-  } else {
-    navigate("/");
   }
+  else{
+    return <p>Error</p>
+  }
+  
+
 }
