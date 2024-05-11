@@ -135,7 +135,7 @@ export default function Welcome() {
             </div>
           </header>
           <aside className="w-100 mt-5 text-center">
-            <h1 className="fx-bold">{pros[index].title}</h1>
+            <h1 className="fw-bold">{pros[index].title}</h1>
             <div className="d-flex justify-content-center">
               <p className="w-25 prosText" key={pros[index].title}>
                 {pros[index].text}
