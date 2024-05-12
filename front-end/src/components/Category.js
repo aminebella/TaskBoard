@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "@clerk/clerk-react";
 import GetTasks from "../hooks/GetTasks";
+import Swal from "sweetalert2";
 
 export default function Category() {
   const categories = GetCategories();
@@ -48,11 +49,25 @@ export default function Category() {
     }
   }
 
-  function DeleteCategory(e) {
+  async function DeleteCategory(e , categToDlt) {
     e.preventDefault();
-    //sweet alert "oussama"
-    axios.delete(`http://localhost:8000/api/categories/${oldCateg}/${userId}`);
-    window.location.reload();
+    await axios.delete(`http://localhost:8000/api/categories/${categToDlt}/${userId}`);
+    try{
+      Swal.fire({
+      icon: 'success',
+      title: 'Category deleted',
+      text: 'Category has been deleted successfully!',
+      showConfirmButton:false,
+      timer:1500
+    }).then(()=>window.location.reload())
+  } catch (error) {
+    console.error('Error adding task:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Failed to add task. Please try again later.',
+    });
+  }
   }
 
   function nbreTasksByCateg(chosenCateg) {
@@ -176,7 +191,7 @@ export default function Category() {
               </span>
               <button
                 className="btn btn-outline-secondary pt-1 pb-1 p-2 border border-0"
-                onClick={(e) => DeleteCategory(e)}
+                onClick={(e) => DeleteCategory(e , categorie.nameCategory)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

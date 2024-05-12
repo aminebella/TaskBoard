@@ -1,8 +1,8 @@
 import { useAuth } from "@clerk/clerk-react";
 import { useSelector } from "react-redux";
 import GetTasks from "../hooks/GetTasks";
-// import GetCategories from "../hooks/GetCategories";
-// import { useState } from "react";
+import { useState } from "react";
+import AddTasks from "./AddTasks";
 
 export default function Tasks() {
   const clickedCateg = useSelector((data) => data.categ);
@@ -11,24 +11,7 @@ export default function Tasks() {
 
   const allTasks = GetTasks();
 
-  // const categories = GetCategories();
-  // const [category , setCategory] = useState("") //category input state variable
-  // const [error, setError] = useState(""); //formulaire errors
-
-  // function StoreCategory(e) {
-  //   e.preventDefault();
-
-  //   const isCategExist = categories.filter((categ) => categ.nameCategory === category && categ.userId === userId)
-
-  //   if (category.nameCategory === "") {
-  //     setError("Give a name to you category");
-  //   } else if (isCategExist.length !== 0) {
-  //     setError("This category already exist");
-  //   } else {
-  //     axios.post("http://localhost:8000/api/categories", { ...category });
-  //     window.location.reload();
-  //   }
-  // }
+  const [ShowAddTaskForm , setShowAddTaskForm] = useState(false)
 
   if (allTasks !== "load") {
     let Tasks;
@@ -56,6 +39,10 @@ export default function Tasks() {
               </p>
             </div>
           )
+        }
+        <button onClick={()=>setShowAddTaskForm(prev=>!prev)}>Add Task</button>
+        {
+          ShowAddTaskForm && <AddTasks/>
         }
       </div>
     );
