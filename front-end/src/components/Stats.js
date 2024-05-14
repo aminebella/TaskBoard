@@ -1,17 +1,14 @@
-import Menu from "./Menu";
 import GetStats from "../hooks/GetStats";
 
-
 export default function Stats() {
+  const stats = GetStats();
 
-    const stats = GetStats()
+  if (stats !== "load") {
     return (
-      <div>
-        <Menu/>
-        <h1>Page de statistiques</h1>
-        
-        {stats === 'load' ? <div className="loader1"></div> :stats.length > 0 ? (
+      <div className="w-65">
+        {stats.length > 0 && (
           <div>
+            <h1>Page de statistiques</h1>
             <ul>
               {stats.map((st, index) => (
                 <li key={index}>
@@ -21,10 +18,14 @@ export default function Stats() {
               ))}
             </ul>
           </div>
-        ) : (
-          <p>Aucune statistique disponible pour cet utilisateur.</p>
         )}
       </div>
     );
+  } else {
+    return (
+      <div className="d-flex justify-content-center align-items-center w-65">
+        <div className="loader"></div>
+      </div>
+    );
   }
-
+}

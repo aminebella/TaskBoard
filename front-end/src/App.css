@@ -6,6 +6,7 @@
 html{
   scroll-behavior: smooth;
   scroll-padding-top: 20px;
+  scrollbar-width: thin;
 }
 
 
@@ -43,7 +44,6 @@ html{
   cursor: pointer;
 }
 
-
 @keyframes fade {
   0%{
     opacity: 0;
@@ -71,7 +71,7 @@ html{
   display: inline-block;
   width: 20px;
   height: 20px;
-  outline: 1px solid;
+  outline: 2px solid rgb(131, 131, 131);
   outline-offset: 2px;
   border-radius: 50%;
 }
@@ -80,6 +80,25 @@ html{
   animation: fade .5s linear;
 }
 
+#categStyle {
+  cursor: pointer ;
+  display:flex ;
+  gap: 10px;
+  align-items:center ;
+  padding:5px 10px;
+  text-align:center;
+  border-radius: 30px;
+  box-shadow: 1px 1px 2px rgba(120, 119, 119, 0.598);
+  transition: .3s;
+}
+
+#categStyle:hover {
+  background-color: rgba(243, 243, 243, 0.761);
+}
+
+#categStyle textarea:focus{
+  outline: none;
+}
 
 
 
@@ -93,21 +112,17 @@ html{
 /* loading logo */
 
 .loader {
-  width: 30px;
-  aspect-ratio: 2;
-  --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
-  background: 
-    var(--_g) 0%   50%,
-    var(--_g) 50%  50%,
-    var(--_g) 100% 50%;
-  background-size: calc(100%/3) 50%;
-  animation: l3 1s infinite linear;
+  height: 4px;
+  width: 130px;
+  --c:no-repeat linear-gradient(#6100ee 0 0);
+  background: var(--c),var(--c),#d7b8fc;
+  background-size: 60% 100%;
+  animation: l16 3s infinite;
 }
-@keyframes l3 {
-    20%{background-position:0%   0%, 50%  50%,100%  50%}
-    40%{background-position:0% 100%, 50%   0%,100%  50%}
-    60%{background-position:0%  50%, 50% 100%,100%   0%}
-    80%{background-position:0%  50%, 50%  50%,100% 100%}
+@keyframes l16 {
+  0%   {background-position:-150% 0,-150% 0}
+  66%  {background-position: 250% 0,-150% 0}
+  100% {background-position: 250% 0, 250% 0}
 }
 
 .loader1 {

@@ -1,23 +1,20 @@
 import { SignedIn, useUser } from "@clerk/clerk-react";
-import Tasks from "./Tasks";
 import Menu from "./Menu";
+import Content from "./Content";
 
-export default function Board() {
+export default function Board({ nav }) {
+  const { user } = useUser();
 
-  const {user} = useUser()
-
-  if(user){
+  if (user) {
     return (
       <SignedIn>
-        <Menu/>
-        <Tasks />
+        <div className="d-flex w-100 justify-content-around">
+          <Menu />
+          <Content nav={nav} />
+        </div>
       </SignedIn>
     );
-
+  } else {
+    return <p>Error</p>;
   }
-  else{
-    return <p>Error</p>
-  }
-  
-
 }
