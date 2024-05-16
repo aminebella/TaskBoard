@@ -26,7 +26,7 @@ export default function Menu() {
         <p>{fullName}</p>
         <p>{email}</p>
         <div>
-          <button onClick={() => navigate(`/tasks/${userId}`)}>Tasks</button>
+          <button onClick={() => navigate(`/`)}>Tasks</button>
         </div>
         <div>
           <button onClick={() => navigate(`/statistics/${userId}`)}>
