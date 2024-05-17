@@ -7,8 +7,15 @@ html{
   scroll-behavior: smooth;
   scroll-padding-top: 20px;
   scrollbar-width: thin;
+  transition: .3s;
+}
+div{
+  scrollbar-width: thin;
 }
 
+body{
+  background-color: rgb(51, 51, 51);
+}
 
 /* welcome.js */
 .navbar-brand img{
@@ -76,10 +83,6 @@ html{
   border-radius: 50%;
 }
 
-.AddCategForm{
-  animation: fade .5s linear;
-}
-
 #categStyle {
   cursor: pointer ;
   display:flex ;
@@ -99,6 +102,30 @@ html{
 #categStyle textarea:focus{
   outline: none;
 }
+
+/* AddTask.js */
+.addTaskForm{
+  animation: fade .1s linear;
+  position: absolute;
+  top: 45%;
+  right: 8%;
+  z-index: 10;
+}
+
+/* Tasks.js */
+
+.actionButtons{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.AddTaskIcon{
+  bottom: 10%;
+  right: 7%;
+}
+
+
 
 
 

@@ -4,7 +4,7 @@ APIs URLS :
     -- One Task : get("/api/tasks/:taskId")
     -- Tasks in specific categ : get("/api/tasks/category/:nameCategory")
     -- Create task : post("/api/tasks")
-    -- Update task : put("/api/tasks/:taskId")
+    -- Update task : patch("/api/tasks/:taskId")
     -- Delete task : delete("/api/tasks/:taskId")
 
   - Notes :

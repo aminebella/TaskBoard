@@ -44,6 +44,7 @@ export default function AddTasks() {
       newTask = {
         description,
         nameCategory: "all",
+        createdAt: new Date(),
         userId,
       };
     }
@@ -51,6 +52,7 @@ export default function AddTasks() {
       newTask = {
         description,
         nameCategory: selectedCategory,
+        createdAt: new Date(),
         userId,
       };
     }
@@ -79,70 +81,75 @@ export default function AddTasks() {
 
   if (categories !== "load") {
     return (
-      <div className="container mt-4">
-        <Toaster position="top-right" reverseOrder={false} />
-        <h2 className="mb-4">Add Task</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
+      <div className="addTaskForm container mt-4 p-3 shadow bg-body-secondary rounded" style={{width:"30%"}}>
+        <Toaster position="top-center" reverseOrder={false} />
+        <form onSubmit={handleSubmit} className="">
+          <div className="mb-2">
             <label htmlFor="description" className="form-label">
-              Description:
+              Task:
             </label>
             <input
               type="text"
               className="form-control"
               id="description"
+              placeholder="Enter new task"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-2">
             <label htmlFor="category" className="form-label">
               Category:
             </label>
-            <select
-              className="form-select"
-              id="category"
-              value={nameCategory}
-              onChange={(e) => setNameCategory(e.target.value)}
-              // required
-            >
-              <option hidden value="">
-                Choose Existing Category
-              </option>
-              {categories.map((category) => (
-                <option key={category._id} value={category.nameCategory}>
-                  {category.nameCategory}
-                </option>
-              ))}
-            </select>
-            <p
-              className="text-body-secondary text-decoration-underline"
-              style={{ textAlign: "right", cursor: "pointer" }}
-              onClick={() => setCreateNewCateForm((prev) => !prev)}
-            >
-              Create New Category
-            </p>
-            {CreateNewCateForm && (
-              <span>
+            {
+              CreateNewCateForm ?
+              <div className="d-flex gap-2" style={{height:"38px"}}>
                 <input
                   type="color"
+                  style={{height:"100%"}}
+                  defaultValue={'#008000'}
                   onChange={(e) => setNewCategoryColor(e.target.value)}
                 />
                 <input
                   type="text"
-                  className=""
+                  className="form-control"
                   placeholder="Enter New Category Name"
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value)}
                   required
                 />
-              </span>
-            )}
+              </div>
+              :
+              <select
+                className="form-select"
+                id="category"
+                value={nameCategory}
+                onChange={(e) => {setNameCategory(e.target.value) ; setNewCategory('')}}
+              >
+                <option hidden value="">
+                  Choose an existing category
+                </option>
+                {categories.filter(cteg=>cteg.userId === userId).map((category) => (
+                  <option key={category._id} value={category.nameCategory}>
+                    {category.nameCategory}
+                  </option>
+                ))}
+              </select>
+            }
+            <p
+              className="text-body-secondary text-decoration-underline"
+              style={{ textAlign: "right", cursor: "pointer" }}
+              onClick={() => setCreateNewCateForm((prev) => !prev)}
+            >
+              {CreateNewCateForm ? "Choose an existing category" : "Create New Category"}
+            </p>
           </div>
-          <button type="submit" className="btn btn-dark">
-            Add Task
-          </button>
+          <div className="d-flex align-items-center">
+            <button type="submit" className="btn btn-dark mb-2" style={{height:'fit-content'}}>
+              Add Task
+            </button>
+          </div>
         </form>
       </div>
     );

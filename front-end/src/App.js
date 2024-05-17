@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import Welcome from "./components/Welcome";
 import Board from "./components/Board";
 import { useAuth } from "@clerk/clerk-react";
@@ -26,21 +27,6 @@ function App() {
       </div>
     );
   }
-
-  // return (
-  //   <div className="App">
-  //     <Routes>
-  //       {
-  //         isSignedIn ?
-  //         <Route path='/' element={<Board/>}/>
-  //         :
-  //         <Route path='/' element={<Welcome/>}/>
-  //       }
-  //       <Route path='/stats/:userId' element={<Stats/>}/>
-  //     </Routes>
-  //   </div>
-
-  // );
 }
 
 export default App;

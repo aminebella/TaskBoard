@@ -10,7 +10,7 @@ const {
 } = require("../controllers/tasks");
 
 route.route("/").get(getAllTasks).post(createTask);
-route.route("/:taskId").get(getTask).put(updateTask).delete(deleteTask);
+route.route("/:taskId").get(getTask).patch(updateTask).delete(deleteTask);
 route.route("/category/:nameCategory").get(getTasksWithCateg);
 
 module.exports = route;

@@ -10,7 +10,7 @@ export default function Menu() {
   const { user } = useUser();
 
   if (isSignedIn) {
-    const email = user.primaryEmailAddress.emailAddress;
+    // const email = user.primaryEmailAddress.emailAddress;
     let fullName;
 
     if (fullName) {
@@ -19,19 +19,23 @@ export default function Menu() {
       fullName = user.username;
     }
     return (
-      <div style={{ width: "30%" }}>
-        <div className="m-5">
+      <div style={{ width: "20%" }}>
+        <div className="d-flex align-items-center gap-2 m-5">
           <UserButton />
-        </div>
-        <p>{fullName}</p>
-        <p>{email}</p>
-        <div>
-          <button onClick={() => navigate(`/`)}>Tasks</button>
+          <p className="fw-bold m-0 text-uppercase">{fullName}</p>
         </div>
         <div>
-          <button onClick={() => navigate(`/statistics/${userId}`)}>
-            Statistics
-          </button>
+          <div>
+            <p onClick={() => navigate(`/`)}>Tasks</p>
+          </div>
+          <div>
+            <p onClick={() => navigate(`/notes/${userId}`)}>Notes</p>
+          </div>
+          <div>
+            <p onClick={() => navigate(`/statistics/${userId}`)}>
+              Statistics
+            </p>
+          </div>
         </div>
       </div>
     );
