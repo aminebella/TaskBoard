@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Welcome from "./components/Welcome";
 import Board from "./components/Board";
+import ContactUs from "./components/ContactUs";
 import { useAuth } from "@clerk/clerk-react";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Welcome />} />
+          <Route path="/contact-us" element={<ContactUs />} />
         </Routes>
       </div>
     );

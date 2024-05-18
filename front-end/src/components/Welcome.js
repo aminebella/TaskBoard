@@ -16,12 +16,12 @@ export default function Welcome() {
     },
     {
       title: "All-in-One package",
-      text: "Show only tasks assigned to you, or items marked as urgent. Break down any project in the way that’s most helpful to you.",
+      text: "Find all necessary tools you need to organize your tasks efficiently. From task categorization to deadline management, we've got you covered.",
     },
     {
       title: "Statistics",
-      text: "Show only tasks assigned to you, or items marked as urgent. Break down any project in the way that’s most helpful to you.",
-    },
+      text: "Gain a holistic view of your tasks with detailed statistics and progress tracking.",
+    }
   ];
 
   let [index, setIndex] = useState(0);
